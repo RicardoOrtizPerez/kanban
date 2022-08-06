@@ -1,6 +1,6 @@
 import React from "react"
 import {Box} from '@mui/material'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Sidebar from "../common/Sidebar"
 import Toolbar from "../common/Toolbar"
 

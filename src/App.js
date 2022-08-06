@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from './components/layout/AppLayout';
 import Home from './pages/home';
 import Projects from './pages/projects';
+import WorkItems from './pages/work_items';
 
 function App() {
   const theme = createTheme({
@@ -18,8 +19,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppLayout />}>
-            <Route index element={<Home/>} />
-            <Route path='projects' element={<Projects/>} />
+            <Route path="/home" element={<Home/>} />
+            <Route path='/projects' element={<Projects/>} />
+            <Route path='/work_items/:project_id' element={<WorkItems/>} />
           </Route>
         </Routes>
       </BrowserRouter>

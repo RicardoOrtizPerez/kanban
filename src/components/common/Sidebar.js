@@ -1,22 +1,24 @@
 import React, { useState } from 'react'
-import { Box, Drawer, IconButton, List, ListItem,ListItemIcon, ListItemText, ListItemButton, Typography, StepIcon, Collapse } from '@mui/material'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Box, Drawer, List  } from '@mui/material'
+import { useLocation} from 'react-router-dom'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import ViewAgendaIcon from '@mui/icons-material/ViewAgenda'
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AppsIcon from '@mui/icons-material/Apps'
 import BallotIcon from '@mui/icons-material/Ballot'
 import EventIcon from '@mui/icons-material/Event';
+import CustomListItemButton from './CustomListItemButton';
+import CollapseMenuButton from './CollapseMenuButton';
 
 const Sidebar = () => {
+    const location = useLocation()
     const [open, setOpen] = useState(true)
     const handleClick = () => {
         setOpen(!open);
     }
 
     const sidebarWidth = 250
+    const project_id = 'sxsxsx';
 
     return (
         <Drawer
@@ -39,51 +41,17 @@ const Sidebar = () => {
             <Box sx={{height:'64px'}}>
             </Box>
             <List sx={{ width: '100%', component: 'nav', minHeight: '400px'}}>
-                <ListItemButton component={Link} to="/projects" activeClassName="seleccionado"
-                className={(navData) =>
-                    console.log(navData)
-                    // navData.isActive ? styles.activeTab : styles.inactiveTab
-                  }>
-                    <ListItemIcon>
-                        <DashboardIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary="Projects" />
-                </ListItemButton>
-                <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                        <ViewAgendaIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Boards" />
-                    {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
-                </ListItemButton>
-                <Collapse in={!open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 2 }}>
-                            <ListItemIcon>
-                                <AssignmentIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Work Items" />
-                        </ListItemButton>
-                        <ListItemButton sx={{ pl: 2 }}>
-                            <ListItemIcon>
-                                <AppsIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Boards" />
-                        </ListItemButton>
-                        <ListItemButton sx={{ pl: 2 }}>
-                            <ListItemIcon>
-                                <BallotIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Backlogs" />
-                        </ListItemButton>
-                        <ListItemButton sx={{ pl: 2 }}>
-                            <ListItemIcon>
-                                <EventIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Delivery plans" />
-                        </ListItemButton>
-                    </List>
-                </Collapse>
+                <CustomListItemButton icon={<DashboardIcon/>} to='/' label='Projects' />
+                <CollapseMenuButton 
+                    icon={<ViewAgendaIcon />} 
+                    label='Boards'
+                    items={[
+                        { icon: <AssignmentIcon/>, to:`/work_items/${project_id}`, label: 'Work Items' },
+                        { icon: <AppsIcon/>, to: '/boards', label: 'Boards' },
+                        { icon: <BallotIcon/>, to: '/backlogs', label: 'Backlogs' },
+                        { icon: <EventIcon/>, to: '/delivery-plans', label: 'Delivery plans' }
+                    ]}       
+                />
             </List>
         </Drawer>
     )
