@@ -38,18 +38,18 @@ const Sidebar = () => {
 
                 }
             }}>
-            <Box sx={{height:'64px'}}>
+            <Box sx={{height:'50px'}}>
             </Box>
             <List sx={{ width: '100%', component: 'nav', minHeight: '400px'}}>
-                <CustomListItemButton icon={<DashboardIcon/>} to='/' label='Projects' />
+                <CustomListItemButton icon={<DashboardIcon/>} to='/app/projects' label='Projects' />
                 <CollapseMenuButton 
                     icon={<ViewAgendaIcon />} 
                     label='Boards'
                     items={[
-                        { icon: <AssignmentIcon/>, to:`/work_items/${project_id}`, label: 'Work Items' },
-                        { icon: <AppsIcon/>, to: '/boards', label: 'Boards' },
-                        { icon: <BallotIcon/>, to: '/backlogs', label: 'Backlogs' },
-                        { icon: <EventIcon/>, to: '/delivery-plans', label: 'Delivery plans' }
+                        { icon: <AssignmentIcon/>, to:`/app/work_items/${project_id}`, label: 'Work Items' },
+                        { icon: <AppsIcon/>, to: `/app/boards/${project_id}`, label: 'Boards' },
+                        { icon: <BallotIcon/>, to: '/app/backlogs', label: 'Backlogs' },
+                        { icon: <EventIcon/>, to: '/app/delivery-plans', label: 'Delivery plans' }
                     ]}       
                 />
             </List>
