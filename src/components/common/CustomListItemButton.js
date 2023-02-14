@@ -11,7 +11,7 @@ const CustomListItemButton = ({ children, ...props }) => {
             to={props.to}
             selected={props.to === location.pathname}>
             <ListItemIcon>
-                {props.icon}
+                <box-icon name="rocket"></box-icon>
             </ListItemIcon>
             <ListItemText primary={props.label} />
         </ListItemButton>
